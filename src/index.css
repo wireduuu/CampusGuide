@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* -----------------------------
+   BASE STYLES
+------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text-primary antialiased;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-semibold text-text-primary;
+  }
+
+  p {
+    @apply text-sm text-text-primary;
+  }
+
+  small {
+    @apply text-xs text-text-muted;
+  }
+
+  img {
+    @apply block max-w-full h-auto;
+  }
+
+  a {
+    @apply text-primary hover:underline;
+  }
+}
+
+/* -----------------------------
+   COMPONENT PRESETS
+------------------------------ */
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply h-11 px-4 rounded-md bg-primary text-white
+           font-medium transition
+           hover:bg-primary-dark
+           focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+
+  .btn-secondary {
+    @apply h-11 px-4 rounded-md bg-white border border-primary
+           text-primary font-medium transition
+           hover:bg-primary/5
+           focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-lg shadow-sm overflow-hidden;
+  }
+
+  /* Tags / Pills */
+  .tag {
+    @apply inline-block text-xs px-2 py-1 rounded
+           bg-primary/10 text-primary;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full h-12 px-4 rounded-md border border-gray-300
+           text-text-primary
+           focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+}
+
+/* -----------------------------
+   UTILITIES (PROJECT-SPECIFIC)
+------------------------------ */
+@layer utilities {
+  .section {
+    @apply px-4 py-6;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold mb-4;
+  }
+
+  .card-hover {
+    @apply transition-shadow hover:shadow-md;
+  }
+}
