@@ -4,6 +4,8 @@ import { categories } from "../../data/categories";
 import BuildingCard from "../ui/BuildingCard";
 import SearchInput from "../ui/SearchBar";
 import { type BuildingCategory } from "../../types/building";
+import { MapPinOff } from "lucide-react";
+import EmptyState from "../ui/EmptyState";
 
 const BuildingsGrid = () => {
   const [activeCategory, setActiveCategory] =
@@ -79,9 +81,20 @@ const BuildingsGrid = () => {
 
       {/* Results */}
       {filteredBuildings.length === 0 ? (
-        <p className="text-sm text-text-muted text-center py-12">
-          No buildings match your search.
-        </p>
+        <EmptyState
+          icon={
+            <MapPinOff
+              size={28}
+              className="text-[rgb(var(--color-primary))]"
+            />
+          }
+          title="No buildings found"
+          description={
+            searchQuery
+              ? `We couldn’t find any buildings matching “${searchQuery}”.`
+              : "There are no buildings in this category yet."
+          }
+        />
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {filteredBuildings.map((building) => (
