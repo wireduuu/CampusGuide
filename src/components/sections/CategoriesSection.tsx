@@ -7,7 +7,7 @@ const categories = [
 
 const CategoriesSection = () => {
   return (
-    <section className="max-w-6xl mx-auto scroll-mt-20">
+    <section id="categories" className="max-w-6xl mx-auto scroll-mt-20">
       <h2 className="text-lg font-semibold mb-4">
         Browse by Category
       </h2>
