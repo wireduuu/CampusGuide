@@ -5,26 +5,19 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-  extend: {
-    colors: {
-      primary: {
-        DEFAULT: '#1F6F5C',   // Institutional green
-        dark: '#145244',
-        light: '#3A8C78',
-      },
-      background: {
-        DEFAULT: '#F7EFE3',   // Cream background
-        soft: '#FBF6EE',
-      },
-      accent: {
-        DEFAULT: '#D6B26E',   // Subtle gold accent
-      },
-      text: {
-        primary: '#1F2933',
-        muted: '#6B7280',
+    extend: {
+      colors: {
+        primary: "rgb(var(--color-primary))",
+        accent: "rgb(var(--color-accent))",
+        background: "rgb(var(--color-bg))",
+        surface: "rgb(var(--color-surface))",
+        text: {
+          primary: "rgb(var(--color-text-primary))",
+          muted: "rgb(var(--color-text-muted))",
+        },
+        border: "rgb(var(--color-border))",
       },
     },
   },
-},
   plugins: [],
-}
+};

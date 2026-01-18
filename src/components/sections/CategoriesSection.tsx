@@ -7,7 +7,7 @@ const categories = [
 
 const CategoriesSection = () => {
   return (
-    <section className="px-4 py-6">
+    <section className="max-w-6xl mx-auto scroll-mt-20">
       <h2 className="text-lg font-semibold mb-4">
         Browse by Category
       </h2>
@@ -16,7 +16,7 @@ const CategoriesSection = () => {
         {categories.map(category => (
           <div
             key={category}
-            className="card card-hover p-4 text-center cursor-pointer"
+            className="card card-hover p-4 text-center cursor-pointer transition-transform duration-200 hover:scale-105 hover:bg-accent hover:text-white"
           >
             <p className="font-medium text-sm">{category}</p>
           </div>

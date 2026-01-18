@@ -1,15 +1,29 @@
-import HeroSection from "./components/sections/HeroSection";
-import CategoriesSection from "./components/sections/CategoriesSection";
-import EssentialsSection from "./components/sections/EssentialsSection";
-import BuildingsGrid from "./components/sections/BuildingsGrid";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import Home from "./pages/Home";
+import BuildingDetail from "./pages/BuildingDetails";
+import Header from "./components/layout/Header";
+import buildings from "./data/buildings";
+import { useState } from "react";
 
 function App() {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <main className="min-h-screen bg-background">
-      <HeroSection />
-      <CategoriesSection />
-      <EssentialsSection />
-      <BuildingsGrid />
+      <Header
+        buildings={buildings}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        onSelect={(building) =>
+          navigate(`/buildings/${building.id}`)
+        }
+      />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/buildings/:id" element={<BuildingDetail />} />
+      </Routes>
     </main>
   );
 }

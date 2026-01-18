@@ -3,29 +3,46 @@
 @tailwind utilities;
 
 /* -----------------------------
-   BASE STYLES
+   DESIGN TOKENS (v1)
 ------------------------------ */
 @layer base {
+  :root {
+    /* Colors (RGB for future dark mode) */
+    --color-primary: 31 111 92;
+    --color-primary-dark: 20 82 68;
+    --color-accent: 214 178 130;
+
+    --color-bg: 247 239 227;
+    --color-surface: 255 255 255;
+
+    --color-text-primary: 31 41 51;
+    --color-text-muted: 107 114 128;
+    --color-border: 229 231 235;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-text-primary antialiased;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
+    @apply antialiased;
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-text-primary));
   }
 
   h1, h2, h3, h4 {
-    @apply font-semibold text-text-primary;
+    @apply font-semibold;
   }
 
   p {
-    @apply text-sm text-text-primary;
+    @apply text-sm;
   }
 
   small {
-    @apply text-xs text-text-muted;
+    @apply text-xs;
+    color: rgb(var(--color-text-muted));
   }
 
   img {
@@ -33,50 +50,65 @@
   }
 
   a {
-    @apply text-primary hover:underline;
+    color: rgb(var(--color-primary));
+    @apply hover:underline;
   }
 }
 
 /* -----------------------------
-   COMPONENT PRESETS
+   COMPONENTS
 ------------------------------ */
 @layer components {
   /* Buttons */
+  .btn {
+    @apply h-11 px-4 rounded-md font-medium transition
+           inline-flex items-center justify-center gap-2;
+  }
+
   .btn-primary {
-    @apply h-11 px-4 rounded-md bg-primary text-white
-           font-medium transition
-           hover:bg-primary-dark
-           focus:outline-none focus:ring-2 focus:ring-accent;
+    background-color: rgb(var(--color-primary));
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: rgb(var(--color-primary-dark));
   }
 
   .btn-secondary {
-    @apply h-11 px-4 rounded-md bg-white border border-primary
-           text-primary font-medium transition
-           hover:bg-primary/5
-           focus:outline-none focus:ring-2 focus:ring-accent;
+    background-color: white;
+    border: 1px solid rgb(var(--color-primary));
+    color: rgb(var(--color-primary));
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(var(--color-primary), 0.05);
   }
 
   /* Cards */
   .card {
-    @apply bg-white rounded-lg shadow-sm overflow-hidden;
+    background-color: rgb(var(--color-surface));
+    @apply rounded-lg shadow-sm overflow-hidden;
   }
 
-  /* Tags / Pills */
+  /* Tags */
   .tag {
-    @apply inline-block text-xs px-2 py-1 rounded
-           bg-primary/10 text-primary;
+    @apply text-xs px-2 py-1 rounded;
+    background-color: rgba(var(--color-primary), 0.1);
+    color: rgb(var(--color-primary));
   }
 
   /* Inputs */
   .input {
-    @apply w-full h-12 px-4 rounded-md border border-gray-300
-           text-text-primary
-           focus:outline-none focus:ring-2 focus:ring-accent;
+    @apply w-full h-12 px-4 rounded-md border text-sm;
+    border-color: rgb(var(--color-border));
+    background-color: white;
+    color: rgb(var(--color-text-primary));
+    outline: none;
   }
 }
 
 /* -----------------------------
-   UTILITIES (PROJECT-SPECIFIC)
+   UTILITIES
 ------------------------------ */
 @layer utilities {
   .section {
@@ -88,6 +120,6 @@
   }
 
   .card-hover {
-    @apply transition-shadow hover:shadow-md;
+    @apply transition-transform duration-300 hover:scale-105 hover:shadow-md;
   }
 }

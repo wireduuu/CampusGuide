@@ -1,4 +1,4 @@
-import { type Building } from "./../types/building";
+import { type Building } from "../types/building";
 
 const buildings: Building[] = [
   {
@@ -13,6 +13,13 @@ const buildings: Building[] = [
   {
     id: 2,
     name: "Main Library",
+    category: "Facility",
+    location: "Near the central roundabout",
+    images: ["/images/buildings/library.jpg"],
+  },
+  {
+    id: 3,
+    name: "Main Auditorium",
     category: "Facility",
     location: "Near the central roundabout",
     images: ["/images/buildings/library.jpg"],
