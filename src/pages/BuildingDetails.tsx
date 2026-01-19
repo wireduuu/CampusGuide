@@ -49,7 +49,7 @@ const BuildingDetail = () => {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="max-w-6xl mx-auto px-4 py-8"
+      className="max-w-6xl mx-auto px-4 pt-8 pb-16"
     >
       {/* Back */}
       <Link

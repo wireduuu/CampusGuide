@@ -2,7 +2,7 @@ import { Link, Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-border bg-gradient-to-t from-background to-accent/30">
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Top Grid */}
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
