@@ -4,17 +4,27 @@ const HeroSection = () => {
       {/* Background video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="/videos/hero-1080p.mp4"
+        src="/videos/hero-clip-1080p.mp4"
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
         poster="/images/buildings/aerial-view.jpg"
-        preload="auto"
+        aria-hidden="true"
       />
 
-      {/* Dark overlay with responsive opacity */}
-      <div className="absolute inset-0 bg-black/80 sm:bg-black/85 md:bg-black/90 lg:bg-black/90 transition-opacity duration-300" />
+      {/* Dark overlay (lighter on mobile, darker on large screens) */}
+      <div
+        className="
+          absolute inset-0 
+          bg-black/70 
+          sm:bg-black/80 
+          md:bg-black/85 
+          lg:bg-black/90
+          transition-opacity duration-300
+        "
+      />
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-12 flex flex-col items-center text-center gap-6 text-white">
