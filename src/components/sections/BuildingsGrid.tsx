@@ -35,7 +35,7 @@ const BuildingsGrid = () => {
 
   return (
     <section id="buildings" className="mx-auto scroll-mt-20 bg-gradient-to-t from-background to-accent/30">
-      <div className="max-w-6xl mx-auto px-4 pt-10 pb-20">
+      <div className="max-w-6xl mx-auto px-4 pt-16 pb-20">
         <h2 className="section-title font-semibold mb-4">Lecture Buildings & Facilities</h2>
 
         <div className="mb-6">
