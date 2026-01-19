@@ -1,12 +1,24 @@
 const HeroSection = () => {
   return (
-    <section className="relative bg-primary text-white bg-[url('/images/buildings/aerial-view.jpg')] bg-cover bg-center min-h-[calc(100vh-4rem)] flex items-center justify-center">
+    <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/videos/hero-1080p.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/images/buildings/aerial-view.jpg"
+        preload="auto"
+      />
+
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/70"></div>
+      <div className="absolute inset-0 bg-black/80" />
 
       {/* Content */}
-      <div className="relative max-w-6xl mx-auto px-4 py-12 flex flex-col items-center text-center gap-6">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-12 flex flex-col items-center text-center gap-6 text-white">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
           Find your way around campus
         </h1>
 
@@ -14,13 +26,18 @@ const HeroSection = () => {
           Locate lecture halls, departments, and essential buildings without asking around or getting lost.
         </p>
 
-        
-
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <a href="#buildings" className="btn bg-background text-primary hover:bg-accent/80 hover:text-secondary hover:no-underline transition-transform hover:scale-105 duration-300">
+          <a
+            href="#buildings"
+            className="btn bg-background text-primary hover:bg-accent/80 hover:no-underline transition-transform hover:scale-105"
+          >
             Explore Buildings
           </a>
-          <a href="#essentials" className="btn bg-background text-primary hover:bg-accent/80 hover:text-primary hover:no-underline transition-transform hover:scale-105 duration-300">
+
+          <a
+            href="#essentials"
+            className="btn bg-background text-primary hover:bg-accent/80 hover:no-underline transition-transform hover:scale-105"
+          >
             View Essentials
           </a>
         </div>
