@@ -21,7 +21,7 @@ const essentials = [
   },
   {
     id: 3,
-    name: "Auditorium",
+    name: "Main Auditorium",
     description: "Used for lectures, events, and official ceremonies.",
     images: [
       "/images/essentials/auditorium/main.jpeg",
@@ -33,6 +33,18 @@ const essentials = [
     name: "Clinic",
     description: "Provides healthcare services to students and staff.",
     images: ["/images/essentials/clinic/clinic.jpeg"],
+  },
+  {
+    id: 5,
+    name: "KT Hall",
+    description: "Hall of residence for students.",
+    images: ["/images/essentials/kt/kt.jpeg"],
+  },
+  {
+    id: 6,
+    name: "Chamber of Mines Hall",
+    description: "Hall of residence for students.",
+    images: ["/images/essentials/chambers/chambers2.jpeg"],
   },
 ];
 

@@ -78,13 +78,29 @@ const BuildingDetail = () => {
           </h2>
           <div className="flex flex-wrap gap-2">
             {building.departments.map((dep) => (
-              <span key={dep} className="text-xs py-1 rounded">
+              <span key={dep} className="text-xs p-2 bg-primary/10 rounded">
                 {dep}
               </span>
             ))}
           </div>
         </div>
       )}
+
+      {building.rooms && (
+      <div className="mt-6">
+        <h2 className="text-sm font-semibold mb-2">Rooms</h2>
+        <div className="flex flex-wrap gap-2">
+          {building.rooms.map((room) => (
+            <span
+              key={room.code}
+              className="text-xs py-1 px-2 rounded border bg-gray-100 dark:bg-gray-800"
+            >
+              {room.code}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
     </section>
   );
 };

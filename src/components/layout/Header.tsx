@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { Search, X } from "lucide-react";
+import { Search, X, SearchX } from "lucide-react";
 import type { Building } from "../../types/building";
+import EmptyState from "../ui/EmptyState";
+import { highlightMatch } from "../../utils/highlight";
 
 type HeaderProps = {
   buildings: Building[];
@@ -9,50 +11,41 @@ type HeaderProps = {
   onSelect: (building: Building) => void;
 };
 
-const Header = ({
-  buildings,
-  searchQuery,
-  setSearchQuery,
-  onSelect,
-}: HeaderProps) => {
+const Header = ({ buildings, searchQuery, setSearchQuery, onSelect }: HeaderProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-focus input when opened
   useEffect(() => {
     if (searchOpen) inputRef.current?.focus();
   }, [searchOpen]);
 
-  // Filter results safely
   const results =
     searchQuery.trim() === ""
       ? []
       : buildings.filter((b) => {
+          const query = searchQuery.toLowerCase();
+
           const searchableText = [
             b.name,
             b.category,
             b.location,
             b.nearby,
             ...(b.departments ?? []),
+            ...(b.rooms?.map((r) => r.code) ?? []),
+            ...(b.roomGroups?.flatMap((rg) => rg.codes) ?? []),
           ]
             .filter(Boolean)
             .join(" ")
             .toLowerCase();
 
-          return searchableText.includes(
-            searchQuery.toLowerCase()
-          );
+          return searchableText.includes(query);
         });
 
   return (
     <header className="bg-background border-b border-gray-200 shadow-sm sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 h-[4rem] flex items-center justify-between relative">
-        {/* Logo / Title */}
-        <span className="text-sm font-semibold text-primary">
-          FEN Campus Guide
-        </span>
+        <span className="text-sm font-semibold text-primary">FEN Campus Guide</span>
 
-        {/* Search */}
         <div className="relative">
           {!searchOpen && (
             <button
@@ -71,18 +64,12 @@ const Header = ({
                   ref={inputRef}
                   type="text"
                   value={searchQuery}
-                  onChange={(e) =>
-                    setSearchQuery(e.target.value)
-                  }
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search lecture hall, department, building…"
                   className="input pl-10 pr-10 w-full text-sm"
                 />
 
-                <Search
-                  size={16}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                />
-
+                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <button
                   type="button"
                   onClick={() => {
@@ -95,7 +82,6 @@ const Header = ({
                 </button>
               </div>
 
-              {/* Results */}
               {results.length > 0 && (
                 <ul className="mt-2 bg-white border rounded-md shadow-sm max-h-64 overflow-y-auto">
                   {results.map((b) => (
@@ -108,21 +94,38 @@ const Header = ({
                       }}
                       className="px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer"
                     >
-                      <div className="font-medium">
-                        {b.name}
-                      </div>
+                      <div className="font-medium">{highlightMatch(b.name, searchQuery)}</div>
+
                       {b.departments && (
                         <div className="text-xs text-gray-500">
-                          {b.departments.join(", ")}
+                          {b.departments.map((dep, i, arr) => [
+                            highlightMatch(dep, searchQuery),
+                            ...(i < arr.length - 1 ? [", "] : []),
+                          ])}
+                        </div>
+                      )}
+
+                      {b.roomGroups && (
+                        <div className="text-xs text-gray-400 mt-0.5 flex flex-wrap gap-1">
+                          {b.roomGroups.map((rg) => (
+                            <span key={rg.label} className="px-1 bg-gray-100 dark:bg-gray-800 rounded">
+                              {highlightMatch(rg.label, searchQuery)}
+                            </span>
+                          ))}
                         </div>
                       )}
                     </li>
                   ))}
                 </ul>
               )}
+
               {searchQuery && results.length === 0 && (
-                <div className="mt-2 px-3 py-2 text-sm text-gray-500">
-                  No results found.
+                <div className="mt-2 bg-white border rounded-md shadow-sm">
+                  <EmptyState
+                    icon={<SearchX size={24} className="text-[rgb(var(--color-primary))]" />}
+                    title="No results"
+                    description={`Nothing matches “${searchQuery}”.`}
+                  />
                 </div>
               )}
             </div>

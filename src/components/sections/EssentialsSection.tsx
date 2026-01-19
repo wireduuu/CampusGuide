@@ -13,7 +13,7 @@ const EssentialsSection = () => {
   const [activeItem, setActiveItem] = useState<ActiveItem | null>(null);
 
   return (
-    <section id="essentials" className="max-w-6xl mx-auto scroll-mt-20">
+    <section id="essentials" className="max-w-6xl mx-auto scroll-mt-20 px-4 py-10 bg-gradient-to-b from-accent/30 to-background">
       <h2 className="text-lg font-semibold mb-4">
         Places Every Fresher Must Know
       </h2>
