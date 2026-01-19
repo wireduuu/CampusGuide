@@ -19,7 +19,7 @@ const EssentialsSection = () => {
           Places Every Fresher Must Know
         </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4">
           {essentials.map((place) => (
             <motion.div
               key={place.id}

@@ -51,7 +51,7 @@
 
   a {
     color: rgb(var(--color-primary));
-    @apply hover:underline;
+    @apply hover:no-underline;
   }
 }
 
@@ -62,7 +62,7 @@
   /* Buttons */
   .btn {
     @apply h-11 px-4 rounded-md font-medium transition
-           inline-flex items-center justify-center gap-2;
+          inline-flex items-center justify-center gap-2;
   }
 
   .btn-primary {
@@ -74,14 +74,18 @@
     background-color: rgb(var(--color-primary-dark));
   }
 
+  /* Updated secondary button */
   .btn-secondary {
-    background-color: white;
+    background-color: rgb(var(--color-surface)); 
     border: 1px solid rgb(var(--color-primary));
     color: rgb(var(--color-primary));
+    @apply transition-colors duration-300; 
   }
 
-  .btn-secondary:hover {
-    background-color: rgba(var(--color-primary), 0.05);
+  .btn-secondary:hover,
+  .btn-secondary:focus {
+    background-color: rgba(var(--color-primary), 0.1);
+    outline: none;
   }
 
   /* Cards */
