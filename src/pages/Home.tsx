@@ -7,18 +7,9 @@ const Home = () => {
   return (
     <>
       <HeroSection />
-
-      <section className="section">
         <CategoriesSection />
-      </section>
-
-      <section className="section">
         <EssentialsSection />
-      </section>
-
-      <section className="section">
         <BuildingsGrid />
-      </section>
     </>
   );
 };
