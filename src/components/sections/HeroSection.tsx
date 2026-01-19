@@ -13,8 +13,8 @@ const HeroSection = () => {
         preload="auto"
       />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/80" />
+      {/* Dark overlay with responsive opacity */}
+      <div className="absolute inset-0 bg-black/80 sm:bg-black/85 md:bg-black/90 lg:bg-black/95 transition-opacity duration-300" />
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-12 flex flex-col items-center text-center gap-6 text-white">
