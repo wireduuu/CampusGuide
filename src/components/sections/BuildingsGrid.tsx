@@ -43,7 +43,7 @@ const BuildingsGrid = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex gap-2 mb-4 w-full justify-between items-center overflow-x-auto">
+        <div className="flex gap-2 mb-4 w-full items-center overflow-x-auto no-scrollbar pb-2">
           <button
             onClick={() => setActiveCategory("All")}
             className={`px-3 rounded-md py-1.5 whitespace-nowrap transition w-full bg-accent/20 ${
