@@ -15,7 +15,7 @@ const EssentialsSection = () => {
   return (
     <section id="essentials" className="scroll-mt-20 px-4 py-10 bg-gradient-to-b from-accent/30 to-background">
        <div className="max-w-6xl mx-auto">
-        <h2 className="text-lg font-semibold mb-4">
+        <h2 className="section-title font-semibold mb-4">
           Places Every Fresher Must Know
         </h2>
 

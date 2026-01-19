@@ -9,7 +9,7 @@ const CategoriesSection = () => {
   return (
     <section id="categories" className="scroll-mt-20 px-4 py-10 bg-gradient-to-b from-background to-accent/30">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-lg font-semibold mb-4">
+        <h2 className="section-title font-semibold mb-4">
           Browse by Category
         </h2>
 
