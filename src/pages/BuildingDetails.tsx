@@ -3,8 +3,13 @@ import { motion } from "framer-motion";
 import { ChevronLeft, MapPin } from "lucide-react";
 import buildings from "../data/buildings";
 import SwipeCarousel from "../components/ui/SwipeCarousel";
+import { useEffect } from "react";
 
 const BuildingDetail = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
   const { id } = useParams();
   const buildingId = Number(id);
   const building = buildings.find((b) => b.id === buildingId);
