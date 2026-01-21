@@ -25,19 +25,25 @@ const SwipeCarousel = ({
 }: SwipeCarouselProps) => {
   const [index, setIndex] = useState(0);
   const [loaded, setLoaded] = useState(true);
-  const [prevIndex, setPrevIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState<number | null>(null);
 
-  const prev = () => {
+  const goTo = (newIndex: number) => {
+    if (newIndex === index) return;
     setLoaded(false);
-    setPrevIndex(index);
-    setIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+    setNextIndex(newIndex);
+
+    // preload next image
+    const img = new Image();
+    img.src = images[newIndex];
+    img.onload = () => {
+      setIndex(newIndex);
+      setNextIndex(null);
+      setLoaded(true);
+    };
   };
 
-  const next = () => {
-    setLoaded(false);
-    setPrevIndex(index);
-    setIndex((i) => (i === images.length - 1 ? 0 : i + 1));
-  };
+  const prev = () => goTo(index === 0 ? images.length - 1 : index - 1);
+  const next = () => goTo(index === images.length - 1 ? 0 : index + 1);
 
   // Keyboard navigation
   useEffect(() => {
@@ -47,7 +53,7 @@ const SwipeCarousel = ({
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+  }, [index]);
 
   if (images.length === 0) return null;
 
@@ -56,12 +62,21 @@ const SwipeCarousel = ({
       className="relative w-full flex items-center justify-center select-none overflow-hidden"
       style={{ height }}
     >
-      {/* Background: previous image blurred */}
+      {/* Blurred previous image */}
       {!loaded && (
         <img
-          src={images[prevIndex]}
+          src={images[index]}
           alt={alt}
           className="absolute w-full h-full object-contain filter blur-sm brightness-75"
+        />
+      )}
+
+      {/* Blurred next image for preview */}
+      {!loaded && nextIndex !== null && (
+        <img
+          src={images[nextIndex]}
+          alt={alt}
+          className="absolute w-full h-full object-contain filter blur-lg brightness-50 scale-105 transition-all duration-300"
         />
       )}
 
