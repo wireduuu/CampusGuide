@@ -55,7 +55,6 @@ const Header = ({
         b.location,
         b.nearby,
         ...(b.departments ?? []),
-        ...(b.rooms?.map((r) => r.code) ?? []),
         ...(b.roomGroups?.flatMap((rg) => rg.codes) ?? []),
       ]
         .filter(Boolean)
