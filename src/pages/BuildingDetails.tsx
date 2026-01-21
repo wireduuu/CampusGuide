@@ -43,13 +43,13 @@ const BuildingDetail = () => {
       className="max-w-6xl mx-auto px-4 pt-8 pb-16"
     >
       {/* Back */}
-      <Link
+      {/* <Link
         to="/"
         className="inline-flex items-center gap-2 mb-6 text-sm text-primary"
       >
         <ChevronLeft size={18} />
         Buildings
-      </Link>
+      </Link> */}
 
       {/* MAIN LAYOUT */}
       <div className="flex flex-col lg:flex-row gap-8">
