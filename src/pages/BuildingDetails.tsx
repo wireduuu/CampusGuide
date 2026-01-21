@@ -15,7 +15,7 @@ const BuildingDetail = () => {
         <p className="text-sm text-text-muted">Building not found.</p>
 
         <Link
-          to="/#buildings"
+          to="/"
           className="inline-flex items-center gap-2 mt-4 text-sm text-primary hover:underline"
         >
           <ChevronLeft size={16} />
@@ -44,7 +44,7 @@ const BuildingDetail = () => {
     >
       {/* Back */}
       <Link
-        to="/#buildings"
+        to="/"
         className="inline-flex items-center gap-2 mb-6 text-sm text-primary"
       >
         <ChevronLeft size={18} />

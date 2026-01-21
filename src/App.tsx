@@ -19,22 +19,14 @@ function App() {
         buildings={buildings}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        onSelect={(building) =>
-          navigate(`/buildings/${building.id}`)
-        }
+        onSelect={(building) => navigate(`/buildings/${building.id}`)}
       />
 
       {/* Page Content */}
       <div className="flex-1">
         <Routes>
-          <Route
-            path="/"
-            element={<Home />}
-          />
-          <Route
-            path="/buildings/:id"
-            element={<BuildingDetail />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/buildings/:id" element={<BuildingDetail />} />
         </Routes>
       </div>
 
