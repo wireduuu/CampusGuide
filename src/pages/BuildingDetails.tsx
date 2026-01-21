@@ -20,7 +20,7 @@ const BuildingDetail = () => {
           className="inline-flex items-center gap-2 mt-4 text-sm text-primary hover:underline"
         >
           <ChevronLeft size={16} />
-          Back to buildings
+          Buildings
         </Link>
       </div>
     );
@@ -56,7 +56,7 @@ const BuildingDetail = () => {
         className="inline-flex items-center gap-2 mb-6 text-sm text-primary"
       >
         <ChevronLeft size={18} />
-        Back to buildings
+        Buildings
       </Link>
 
       {/* MAIN LAYOUT */}
@@ -110,7 +110,7 @@ const BuildingDetail = () => {
           </div>
 
           <p className="flex items-center gap-2 text-sm text-text-muted mb-6">
-            <MapPin size={16} />
+            <MapPin size={16} color="#930101" />
             {building.location}
           </p>
 

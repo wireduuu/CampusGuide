@@ -12,8 +12,32 @@ const ExploreSection = () => {
             key areas and understanding the campus layout.
           </p>
 
+          {/* tablet text */}
+          <div className="hidden md:flex lg:hidden flex-col gap-12">
+            <div className="flex flex-col gap-4">
+              <p className="text-sm md:text-base text-[rgb(var(--color-text-muted))]">
+                This video walkthrough provides helpful visual guidance for
+                locating key areas and understanding the campus layout. From
+                lecture halls to faculties and essential offices, this guide
+                will help you quickly familiarize yourself with the campus
+                environment and gain a clearer sense of how different parts of
+                the campus connect.
+              </p>
+            </div>
+
+            {/* tablet CTA at bottom of text */}
+            <div className="flex gap-3 flex-wrap">
+              <a href="#buildings" className="btn btn-primary">
+                Explore Buildings
+              </a>
+              <a href="#essentials" className="btn btn-secondary">
+                View Essentials
+              </a>
+            </div>
+          </div>
+
           {/* Desktop text */}
-          <div className="hidden md:flex flex-col gap-12">
+          <div className="hidden lg:flex flex-col gap-12">
             <div className="flex flex-col gap-4">
               <p className="text-sm md:text-base text-[rgb(var(--color-text-muted))]">
                 This video walkthrough provides helpful visual guidance for
