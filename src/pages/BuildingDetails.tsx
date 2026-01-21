@@ -27,22 +27,21 @@ const BuildingDetail = () => {
   }
 
   const images =
-    building.images?.length > 0
-      ? building.images
-      : ["/images/placeholder.webp"];
+    building.images?.map((img) => img.trim()).filter((img) => img.length > 0) ??
+    [];
+
+  const safeImages = images.length > 0 ? images : ["/images/placeholder.webp"];
 
   const allRooms =
-    building.roomGroups?.flatMap(group =>
-      group.codes.filter(code => code.trim() !== "")
+    building.roomGroups?.flatMap((group) =>
+      group.codes.filter((code) => code.trim() !== ""),
     ) ?? [];
 
   const nextImage = () =>
-    setActiveImage((prev) => (prev + 1) % images.length);
+    setActiveImage((prev) => (prev + 1) % safeImages.length);
 
   const prevImage = () =>
-    setActiveImage((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
-    );
+    setActiveImage((prev) => (prev === 0 ? safeImages.length - 1 : prev - 1));
 
   return (
     <motion.section
@@ -65,14 +64,16 @@ const BuildingDetail = () => {
         {/* LEFT — Image Carousel */}
         <div className="lg:w-1/2">
           <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-sm">
-            <img
-              src={images[activeImage]}
-              alt={building.name}
-              onError={(e) =>
-                (e.currentTarget.src = "/images/placeholder.webp")
-              }
-              className="w-full h-full object-cover"
-            />
+            {safeImages[activeImage] && (
+              <img
+                src={safeImages[activeImage]}
+                alt={building.name}
+                onError={(e) => {
+                  e.currentTarget.src = "/images/placeholder.webp";
+                }}
+                className="w-full h-full object-cover"
+              />
+            )}
 
             {images.length > 1 && (
               <>
@@ -96,9 +97,7 @@ const BuildingDetail = () => {
 
         {/* RIGHT — Building Info */}
         <div className="lg:w-1/2 flex flex-col">
-          <h1 className="text-2xl font-semibold mb-2">
-            {building.name}
-          </h1>
+          <h1 className="text-2xl font-semibold mb-2">{building.name}</h1>
 
           <div className="flex flex-wrap gap-2 mb-3">
             <span className="tag">{building.category}</span>
@@ -124,9 +123,7 @@ const BuildingDetail = () => {
 
           {building.departments && (
             <div className="mb-6">
-              <h2 className="text-sm font-semibold mb-2">
-                Departments / Offices
-              </h2>
+              <h2 className="text-sm font-semibold mb-2">Departments</h2>
               <div className="flex flex-wrap gap-2">
                 {building.departments.map((dep) => (
                   <span
@@ -142,9 +139,7 @@ const BuildingDetail = () => {
 
           {allRooms.length > 0 && (
             <div>
-              <h2 className="text-sm font-semibold mb-2">
-                Rooms
-              </h2>
+              <h2 className="text-sm font-semibold mb-2">Rooms</h2>
 
               <div className="flex flex-wrap gap-2">
                 {allRooms.map((code) => (
