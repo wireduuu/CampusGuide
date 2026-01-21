@@ -21,7 +21,7 @@ const HeroSection = () => {
           bg-black/70 
           sm:bg-black/80 
           md:bg-black/85 
-          lg:bg-black/90
+          lg:bg-black/85
           transition-opacity duration-300
         "
       />
@@ -33,7 +33,8 @@ const HeroSection = () => {
         </h1>
 
         <p className="text-sm sm:text-base md:text-lg opacity-90 max-w-lg">
-          Locate lecture halls, departments, and essential buildings without asking around or getting lost.
+          Locate lecture halls, departments, and essential buildings without
+          asking around or getting lost.
         </p>
 
         <div className="mt-6 flex flex-wrap justify-center gap-3">
