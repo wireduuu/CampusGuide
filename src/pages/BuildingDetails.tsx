@@ -1,22 +1,21 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
-import { useState } from "react";
+import { ChevronLeft, MapPin } from "lucide-react";
 import buildings from "../data/buildings";
+import SwipeCarousel from "../components/ui/SwipeCarousel";
 
 const BuildingDetail = () => {
   const { id } = useParams();
   const buildingId = Number(id);
   const building = buildings.find((b) => b.id === buildingId);
 
-  const [activeImage, setActiveImage] = useState(0);
-
   if (!building) {
     return (
       <div className="max-w-4xl mx-auto p-6">
         <p className="text-sm text-text-muted">Building not found.</p>
+
         <Link
-          to="/"
+          to="/#buildings"
           className="inline-flex items-center gap-2 mt-4 text-sm text-primary hover:underline"
         >
           <ChevronLeft size={16} />
@@ -29,19 +28,12 @@ const BuildingDetail = () => {
   const images =
     building.images?.map((img) => img.trim()).filter((img) => img.length > 0) ??
     [];
-
   const safeImages = images.length > 0 ? images : ["/images/placeholder.webp"];
 
   const allRooms =
     building.roomGroups?.flatMap((group) =>
       group.codes.filter((code) => code.trim() !== ""),
     ) ?? [];
-
-  const nextImage = () =>
-    setActiveImage((prev) => (prev + 1) % safeImages.length);
-
-  const prevImage = () =>
-    setActiveImage((prev) => (prev === 0 ? safeImages.length - 1 : prev - 1));
 
   return (
     <motion.section
@@ -61,37 +53,17 @@ const BuildingDetail = () => {
 
       {/* MAIN LAYOUT */}
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* LEFT — Image Carousel */}
+        {/* LEFT — Swipe Carousel */}
         <div className="lg:w-1/2">
-          <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-sm">
-            {safeImages[activeImage] && (
-              <img
-                src={safeImages[activeImage]}
-                alt={building.name}
-                onError={(e) => {
-                  e.currentTarget.src = "/images/placeholder.webp";
-                }}
-                className="w-full h-full object-cover"
-              />
-            )}
-
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={prevImage}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition"
-                >
-                  <ChevronLeft size={18} />
-                </button>
-
-                <button
-                  onClick={nextImage}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition"
-                >
-                  <ChevronRight size={18} />
-                </button>
-              </>
-            )}
+          <div className="rounded-xl overflow-hidden shadow-sm bg-surface h-auto">
+            <SwipeCarousel
+              images={safeImages}
+              alt={building.name}
+              height="auto"
+              showControls={true}
+              showIndicator={true}
+              instantSwitch={true} // snappier, no fade
+            />
           </div>
         </div>
 
@@ -114,13 +86,7 @@ const BuildingDetail = () => {
             {building.location}
           </p>
 
-          {/* Optional Description */}
-          {/* {building.description && (
-            <p className="text-sm text-text-muted mb-6 leading-relaxed">
-              {building.description}
-            </p>
-          )} */}
-
+          {/* Departments */}
           {building.departments && (
             <div className="mb-6">
               <h2 className="text-sm font-semibold mb-2">Departments</h2>
@@ -137,10 +103,10 @@ const BuildingDetail = () => {
             </div>
           )}
 
+          {/* Rooms */}
           {allRooms.length > 0 && (
             <div>
               <h2 className="text-sm font-semibold mb-2">Rooms</h2>
-
               <div className="flex flex-wrap gap-2">
                 {allRooms.map((code) => (
                   <span
