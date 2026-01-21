@@ -60,11 +60,11 @@ const BuildingDetail = () => {
       <div className="flex flex-col lg:flex-row gap-8">
         {/* LEFT — Swipe Carousel */}
         <div className="lg:w-1/2">
-          <div className="rounded-xl overflow-hidden shadow-sm bg-surface h-auto">
+          <div className="rounded-xl overflow-hidden shadow-sm h-auto">
             <SwipeCarousel
               images={safeImages}
               alt={building.name}
-              height="auto"
+              height="17rem"
               showControls={true}
               showIndicator={true}
               instantSwitch={true} // snappier, no fade
